@@ -3,7 +3,7 @@ from telebot import types
 import course
 import config
 
-bot = telebot.TeleBot(config.token)
+bot = telebot.TeleBot(config.gettoken())
 
 user_current_step={}
 
@@ -21,6 +21,8 @@ def handle_updates(command):
 def handle_updates(message):
     next_step(message)
 
+
+# -------------------------------------------------
 
 def reset_user_progress(user_id):
     user_current_step[user_id] = 'intro'
@@ -48,6 +50,7 @@ def next_step(message):
         markup.add(types.KeyboardButton(option))
     bot.send_message(message.chat.id, bot_response.text, reply_markup=markup)
 
+# -------------------------------------------------
 
 bot.polling(none_stop=True, interval=0)
 
