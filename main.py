@@ -31,7 +31,8 @@ def reset_user_progress(user_id):
 def get_next_step(user_id, input):
     if not user_id in user_current_step:
         user_current_step[user_id] = 'intro'
-    user_current_step[user_id] = manual[user_current_step[user_id]].next_step(input)
+
+    user_current_step[user_id] = manual[user_current_step[user_id]].next_item(input)
     return user_current_step[user_id]
 
 
@@ -42,6 +43,9 @@ def get_user_id(message):
 def next_step(message):
     user_id = get_user_id(message)
     current_step = get_next_step(user_id, message.text)
+
+    print current_step
+    print message.text
 
     bot_response = manual[current_step].show()
 
