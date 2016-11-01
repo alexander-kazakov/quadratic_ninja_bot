@@ -44,9 +44,6 @@ def next_step(message):
     user_id = get_user_id(message)
     current_step = get_next_step(user_id, message.text)
 
-    print current_step
-    print message.text
-
     bot_response = manual[current_step].show()
 
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True, row_width=2)
